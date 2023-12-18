@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,700&family=League+Spartan:wght@500;600;700&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Barlow', sans-serif;
 }
+
+:root {
+  --bg-color : #FF6666;
+  }
 
 /* Navbar css */
 
-.navbar {
-  font-size: 17px;
-  line-height: 25px;
-  box-shadow:  0px 8px 6px -6px;
-  --webkit-box-shadow: 0px 8px 6px -6px;
-}
 
-.active {
-  border-bottom: 1px solid black;
-}
+
 
 /* Footer */ 
 
 .footer {
   color: white;
   padding: 25px;
+  background-color: var(--bg-color) !important;
 }
 
 .footer a {

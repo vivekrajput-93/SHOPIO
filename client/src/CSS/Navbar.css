@@ -1,0 +1,21 @@
+:root {
+    --bg-color : #FF6666;
+    }
+
+.navbar {
+    font-size: 17px;
+    line-height: 25px;
+    background-color: var(--bg-color) !important;
+}
+
+.navbar-brand {
+    color: #fff !important;
+}
+
+.nav-link {
+    color: #fff !important;
+}
+
+.active {
+    border-bottom: 2px solid #fff;
+  }

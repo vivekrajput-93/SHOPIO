@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import "../../CSS/Navbar.css";
+
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -15,7 +18,7 @@ const Header = () => {
     toast.success("Logout successfully")
   }
   return (
-    <>
+    <> 
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button

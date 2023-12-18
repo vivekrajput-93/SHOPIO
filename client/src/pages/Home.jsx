@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <Layout>
         <h1>Home</h1>
-        <pre>{JSON.stringify(auth, null, 4)}</pre>
+
     </Layout>
   )
 }
