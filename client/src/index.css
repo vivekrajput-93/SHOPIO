@@ -65,3 +65,18 @@
   background-color: black;
   color: white;
 }
+
+/* Register page */
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  flex-direction: column;
+}
+
+.register input {
+  margin-bottom: .5rem;
+  width: 400px;
+}
