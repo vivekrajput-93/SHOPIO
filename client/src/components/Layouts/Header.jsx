@@ -4,7 +4,6 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import "../../CSS/Navbar.css";
 
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -12,13 +11,13 @@ const Header = () => {
     setAuth({
       ...auth,
       user: null,
-      token : " ",
-    })
-    localStorage.removeItem('auth');
-    toast.success("Logout successfully")
-  }
+      token: " ",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout successfully");
+  };
   return (
-    <> 
+    <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button
@@ -61,11 +60,36 @@ const Header = () => {
                   </li>
                 </>
               ) : (
-                <li className="nav-item">
-                  <NavLink to="/login" onClick={handleLogout} className="nav-link">
-                    Logout
-                  </NavLink>
-                </li>
+                <>
+                  <li className="nav-item dropdown">
+                    <NavLink
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {auth?.user?.name}
+                    </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink to="/dashboard" className="dropdown-item" >
+                          Dashboard
+                        </NavLink>
+                      </li>
+
+                      <li>
+                        <NavLink
+                          to="/login"
+                          onClick={handleLogout}
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                </>
               )}
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">

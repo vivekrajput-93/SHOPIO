@@ -11,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [answer, setAnswer] = useState("");
 
 
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Register = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const  res = await axios.post("/api/v1/auth/register", {name, email, password, phone, address})
+            const  res = await axios.post("/api/v1/auth/register", {name, email, password, phone, address,answer})
             if(res && res.data.success) {
                 toast.success(res.data.message)
                 navigate("/login");
@@ -79,7 +80,7 @@ const Register = () => {
             <div class="form-group">
               <label for="exampleInputPhone">Phone</label>
               <input
-                type="number"
+                type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 class="form-control"
@@ -98,6 +99,19 @@ const Register = () => {
                 class="form-control"
                 id="exampleInputAddress"
                 placeholder="Enter adddress"
+                required
+
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputAddress">Quest</label>
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                class="form-control"
+                id="exampleInputAddress"
+                placeholder="What is made node.js ?"
                 required
 
               />
