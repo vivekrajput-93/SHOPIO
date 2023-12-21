@@ -1,0 +1,85 @@
+:root {
+    --heading : #7a0c0c;
+    --side-heading : #080a1b;
+}
+
+.main {
+    width: 100%;
+    height: 140vh;
+}
+
+.contact-heading {
+    text-align: center;
+    font-size: 4rem;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-cards {
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 380px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    z-index: 10000;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.slide span {
+    margin-top: 10px;
+}
+
+.contact-cards .slide span .MuiSvgIcon-root {
+    color: var(--heading);
+    width: 40px;
+    height: 40px;
+}
+
+/* contact.css */
+.accord {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 9rem;
+}
+  
+.accord-item {
+    margin-top: 2rem;
+    width: 80%;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.accord-item-header {
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding-right: 3rem;
+}
+
+.accord .text {
+    text-align: center;
+    margin: 2rem;
+}
