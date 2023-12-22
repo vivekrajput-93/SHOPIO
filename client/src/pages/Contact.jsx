@@ -55,11 +55,12 @@ const Contact = () => {
             >
               {item.title}
               {activeIndex === row * 2 + col ? (
-                <ExpandLessIcon />
+                <ExpandLessIcon className="arrowUp" />
               ) : (
-                <ExpandMoreIcon />
+                <ExpandMoreIcon className="arrowdown" />
               )}
             </div>
+            <hr />
             {activeIndex === row * 2 + col && (
               <div className="accord-item-content">{item.content}</div>
             )}
@@ -84,6 +85,7 @@ const Contact = () => {
             </section>
             <section className="slide card-two">
               <span>
+
                 <MailOutlineIcon />
               </span>
               <span>vivekraj93@gmail.com</span>

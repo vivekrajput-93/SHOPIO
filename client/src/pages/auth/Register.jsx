@@ -24,7 +24,7 @@ const Register = () => {
                 toast.success(res.data.message)
                 navigate("/login");
             } else {
-                toast.error(res.data.error)
+                toast.error("User already registered!")
             }
             
         } catch (error) {
