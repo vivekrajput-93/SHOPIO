@@ -1,75 +1,102 @@
-import React, { useState } from 'react'
-import Layout from '../components/Layouts/Layout'
-import { useAuth } from '../context/auth'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { Grid } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import Layout from "../components/Layouts/Layout";
+import { useAuth } from "../context/auth";
+import axios from "axios";
+import { Checkbox } from "antd";
+
 const Home = () => {
   const [auth, setAuth] = useAuth();
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [products, setProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
 
-  const toggleAccordion = (index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/category/get-category");
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+      
+
+    }
   };
 
-  const accordionItems = [
-    {
-      title: 'Item 1',
-      content: 'Content for Item 1...',
-    },
-    {
-      title: 'Item 2',
-      content: 'Content for Item 2...',
-    },
-    {
-      title: 'Item 3',
-      content: 'Content for Item 3...',
-    },
-    {
-      title: 'Item 4',
-      content: 'Content for Item 4...',
-    },
-    {
-      title: 'Item 5',
-      content: 'Content for Item 5...',
-    },
-    {
-      title: 'Item 6',
-      content: 'Content for Item 6...',
-    },
-  ];
+  useEffect(() => {
+    getAllCategory();
+  }, []);
 
-  const itemsInRows = Array.from(Array(3), (_, row) => (
-    <Grid container spacing={2} key={row}>
-      {accordionItems.slice(row * 2, row * 2 + 2).map((item, col) => (
-        <Grid item xs={6} key={col}>
-          <div className="accordion-item">
-            <div
-              className={`accordion-item-header ${activeIndex === row * 2 + col ? 'active' : ''}`}
-              onClick={() => toggleAccordion(row * 2 + col)}
-            >
-              {item.title}
-              {activeIndex === row * 2 + col ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </div>
-            {activeIndex === row * 2 + col && (
-              <div className="accordion-item-content">{item.content}</div>
-            )}
-          </div>
-        </Grid>
-      ))}
-    </Grid>
-  ));
+  // filter by cat
+  const handefilter = (value, id)  => {
+    let all = [...checked];
+    if(value) {
+      all.push(id);
+    } else {
+      all = all.filter((cat) => cat !== id)
+    }
+    setChecked(all)
+  }
+
+
+
+  // get all product
+  const getAllProduct = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/product/get-product");
+      setProduct(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllProduct();
+  }, []);
 
   return (
     <Layout>
-   <div className="accordion">
-      {itemsInRows.map((row, index) => (
-        <div key={index}>{row}</div>
-      ))}
-    </div>
-
+      <div className="row mt-3">
+        <div className="col-md-3">
+          <h4 className="text-center">Filter By Category</h4>
+          <div className="d-flex flex-column check">
+            {categories?.map((cat) => (
+              <Checkbox className="checkbox"  key={cat._id} onChange={(e) => handefilter(e.target.checked, cat._id)}>
+                <h4>{cat.name}</h4>
+              </Checkbox>
+            ))}
+          </div>
+        </div>
+        <div className="col-md-9">
+          {JSON.stringify(checked, null, 4)}
+          <h1 className="text-center">All Product</h1>
+          <div className="d-flex flex-wrap">
+            {products?.map((pro) => (
+              <div
+                className="card m-2"
+                style={{ width: "18rem" }}
+                key={pro._id}
+              >
+                <img
+                  className="card-img-top"
+                  src={`/api/v1/product/product-photo/${pro._id}`}
+                  alt={pro.name}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{pro.name}</h5>
+                  <p className="card-text">{pro.description}</p>
+                  <span>$ {pro.price}</span>
+                  <hr />
+                  <button className="btn btn-primary ms-1">More </button>
+                  <button className="btn btn-secondary ms-1">CART </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

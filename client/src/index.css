@@ -85,3 +85,15 @@ ul {
   margin-bottom: .5rem;
   width: 400px;
 }
+
+
+/* product-link */
+
+.pro-link {
+  text-decoration: none;
+}
+
+.check {
+  margin-left: 6rem;
+}
+
