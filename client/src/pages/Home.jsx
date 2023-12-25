@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layouts/Layout";
 import { useAuth } from "../context/auth";
 import axios from "axios";
-import { Checkbox } from "antd";
+import { Checkbox, Radio } from "antd";
+import { Price } from "../components/Price";
 
 const Home = () => {
   const [auth, setAuth] = useAuth();
   const [products, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
 
   const getAllCategory = async () => {
     try {
@@ -18,7 +20,7 @@ const Home = () => {
       }
     } catch (error) {
       console.log(error);
-      
+
 
     }
   };
@@ -66,9 +68,20 @@ const Home = () => {
               </Checkbox>
             ))}
           </div>
+          <h4 className="text-center my-3">Filter by Price</h4>
+          <div className="d-flex flex-column check">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Price?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array}>{p.name}</Radio>
+                </div>
+              ))}
+
+            </Radio.Group>
+          </div>
         </div>
         <div className="col-md-9">
-          {JSON.stringify(checked, null, 4)}
+          {JSON.stringify(radio, null, 4)}
           <h1 className="text-center">All Product</h1>
           <div className="d-flex flex-wrap">
             {products?.map((pro) => (
