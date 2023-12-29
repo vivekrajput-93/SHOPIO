@@ -4,6 +4,7 @@ import Layout from "./../components/Layouts/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Price } from "../components/Price";
+import { useNavigate } from "react-router-dom";
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   //get all cat
   const getAllCategory = async () => {
@@ -90,7 +92,7 @@ const HomePage = () => {
   //get filterd product
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("/api/v1/product/product-filters", {
+      const { data } = await axios.post("/api/v1/product/filter-product", {
         checked,
         radio,
       });
@@ -104,9 +106,9 @@ const HomePage = () => {
       <div className="container-fluid row mt-3">
         <div className="col-md-2">
           <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column check">
             {categories?.map((c) => (
-              <Checkbox
+              <Checkbox 
                 key={c._id}
                 onChange={(e) => handleFilter(e.target.checked, c._id)}
               >
@@ -127,7 +129,7 @@ const HomePage = () => {
           </div>
           <div className="d-flex flex-column">
             <button
-              className="btn btn-danger"
+              className="btn btn-danger mt-3"
               onClick={() => window.location.reload()}
             >
               RESET FILTERS
@@ -150,7 +152,7 @@ const HomePage = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="card-text"> $ {p.price}</p>
-                  <button class="btn btn-primary ms-1">More Details</button>
+                  <button class="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
                   <button class="btn btn-secondary ms-1">ADD TO CART</button>
                 </div>
               </div>

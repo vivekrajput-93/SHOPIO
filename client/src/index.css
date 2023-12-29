@@ -94,6 +94,11 @@ ul {
 }
 
 .check {
-  margin-left: 6rem;
+  margin-left: 1rem;
 }
 
+.product-img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}

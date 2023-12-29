@@ -193,11 +193,11 @@ export const filterProductController = async (req, res) => {
     let args = {};
     if (checked.length > 0) args.category = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
-    const product = await productModel.find(args);
+    const products = await productModel.find(args);
     res.status(200).send({
       success: true,
       message: "Successfully filtered it",
-      product,
+      products,
     });
   } catch (error) {
     console.log(error);
@@ -250,6 +250,53 @@ export const productListController = async (req, res) => {
     res.status(400).send({
       success: false,
       message: "Error in pagination",
+      error,
+    });
+  }
+};
+
+export const searchProductController = async(req,res) => {
+  try {
+    const {keyword} = req.params;
+    const result = await productModel.find({
+      $or : [
+        {name : {$regex : keyword, $options : "i"}},
+        {description : {$regex : keyword, $options : "i"}},
+      ]
+    })
+    .select("-photo");
+    res.json(result)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success : false,
+      message : "Somethin went wrong!",
+      error
+    })
+  }
+}
+
+
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "error while geting related product",
       error,
     });
   }
