@@ -4,9 +4,11 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import "../../CSS/Navbar.css";
 import SearchInput from "../form/SearchInput";
+import useCategory from "../../hooks/useCategory";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
 
   const handleLogout = () => {
     setAuth({
@@ -34,7 +36,11 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">
-              <img src="/assets/shopio-logos_transparent.png" alt="logo" className="logo" />
+              <img
+                src="/assets/shopio-logos_transparent.png"
+                alt="logo"
+                className="logo"
+              />
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
@@ -43,11 +49,32 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
-                  Category
-                </NavLink>
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/categories"}
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Categories
+                </Link>
+
+                <ul className="dropdown-menu drip-link">
+                <li>
+                    <Link className="dropdown-item" to={`/categories`}>
+                      All Catgories
+                    </Link>
+                  </li>
+                {categories?.map((cat) => (
+                  <li>
+                    <Link className="dropdown-item" to={`/category/${cat.slug}`}>
+                      {cat.name}
+                    </Link>
+                  </li>
+                ))}
+                </ul>
               </li>
+
               {!auth.user ? (
                 <>
                   <li className="nav-item">
@@ -73,9 +100,14 @@ const Header = () => {
                     >
                       {auth?.user?.name}
                     </NavLink>
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu drip-link">
                       <li>
-                        <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}className="dropdown-item" >
+                        <NavLink
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
+                          className="dropdown-item"
+                        >
                           Dashboard
                         </NavLink>
                       </li>

@@ -102,3 +102,10 @@ ul {
   height: 400px;
   object-fit: contain;
 }
+
+.drip-link {
+
+  position: absolute !important;
+  top: -4rem !important;
+  left: 1rem !important;
+}
