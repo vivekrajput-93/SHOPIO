@@ -39,14 +39,14 @@ const About = () => {
   return (
     <Layout>
       <>
-        <h1 className="about-heading">About Us</h1>
+        <h1 className="about-heading">About Us !</h1>
         <div className='about-card'>
           <div className='left'>
             <h2>We are you favourite Store.</h2>
-            <p>At Shopio, we're passionate about delivering an unparalleled shopping experience. With a commitment to convenience, quality, and customer satisfaction, we bring together a vast array of products tailored to your needs. Our platform is more than just a marketplace.
+            <p>At Shopio, we're passionate about delivering an unparalleled shopping experience. With a commitment to convenience, quality, and customer satisfaction, we bring together a vast array of products tailored to your needs.
               <br/>
               
-               It's a destination where innovation meets affordability. We strive to make every click an adventure, ensuring seamless transactions, timely deliveries, and a delightful journey from browsing to unboxing. Join us in exploring an expansive world of possibilities, where shopping is not just a task but an enjoyable discovery.</p>
+               It's a destination where innovation meets affordability. We strive to make every click an adventure, ensuring seamless transactions, timely deliveries, and a delightful journey from browsing to unboxing.</p>
           </div>
           <div className='right'>
             <img src='/assets/About.jpg' alt='about' className='about' />

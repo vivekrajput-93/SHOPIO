@@ -10,6 +10,7 @@ import { Grid } from "@mui/material";
 
 const Contact = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  
 
   const toggleAccordion = (index) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));

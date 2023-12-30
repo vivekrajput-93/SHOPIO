@@ -1,0 +1,30 @@
+:root {
+    --bg-color : #FF6666;
+    --heading : #7a0c0c;
+    }
+
+
+.search {
+    width: 400px;
+    border: 1px soldi black;
+    position: relative;
+    top: 1rem;
+}
+
+.tag {
+    position: relative;
+    top: 1rem;
+    color: var(--heading);
+    margin-top: 1rem;
+}
+
+.search-btn {
+    background-color: var(--heading) !important;
+    color: #eee;
+    border: none !important;
+}
+
+.search input {
+    outline: none !important;
+}
+

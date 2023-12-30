@@ -16,11 +16,11 @@
 
 .nav-link {
     color: #7a0c0c !important;
-    margin-top: -120px;
-    margin-left: 2rem;
+    margin-top: -80px;
+    margin-left: 2.5rem;
 }
 
-.active {
+.nav-link:hover {
     border-bottom: 2px solid black;
   }
 

@@ -21,6 +21,7 @@ import UpdateProduct from "./pages/Admin/UpdateProduct";
 import Search from "./pages/Search";
 import ProductInfo from "./pages/ProductInfo";
 import Categories from "./pages/Categories";
+import CategoryProduct from "./pages/CategoryProduct";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/product/:slug" element={<ProductInfo/>} />
         <Route path="/categories" element={<Categories/>} />
+        <Route path="/category/:slug" element={<CategoryProduct/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/dashboard" element={<PrivateRoute />} >
         <Route path="user" element={<Dashboard />} />
