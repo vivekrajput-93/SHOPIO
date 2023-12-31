@@ -5,10 +5,12 @@ import toast from "react-hot-toast";
 import "../../CSS/Navbar.css";
 import SearchInput from "../form/SearchInput";
 import useCategory from "../../hooks/useCategory";
+import { useCart } from "../../context/cart";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
+  const [cart] = useCart();
 
   const handleLogout = () => {
     setAuth({
@@ -122,7 +124,7 @@ const Header = () => {
               )}
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
-                  Cart (0)
+                  Cart {cart.length}
                 </NavLink>
               </li>
             </ul>
