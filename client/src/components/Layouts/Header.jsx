@@ -6,6 +6,7 @@ import "../../CSS/Navbar.css";
 import SearchInput from "../form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
+import { Badge } from "antd";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -62,13 +63,16 @@ const Header = () => {
                 </Link>
 
                 <ul className="dropdown-menu drip-link">
-                {categories?.map((cat) => (
-                  <li>
-                    <Link className="dropdown-item" to={`/category/${cat.slug}`}>
-                      {cat.name}
-                    </Link>
-                  </li>
-                ))}
+                  {categories?.map((cat) => (
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${cat.slug}`}
+                      >
+                        {cat.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
 
@@ -122,11 +126,13 @@ const Header = () => {
                   </li>
                 </>
               )}
+                <Badge count={cart?.length} showZero>
               <li className="nav-item">
-                <NavLink to="/cart" className="nav-link">
-                  Cart {cart.length}
-                </NavLink>
+                  <NavLink to="/cart" className="nav-link">
+                    Cart
+                  </NavLink>
               </li>
+                </Badge>
             </ul>
           </div>
         </div>
