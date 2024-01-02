@@ -16,8 +16,8 @@ const CartPage = () => {
       let index = myCart.findIndex((item) => item._id === pid);
       myCart.splice(index, 1);
       setCart(myCart);
-      localStorage.setItem('cart', JSON.stringify(myCart))
-      toast.success("Item removed successfully!")
+      localStorage.setItem("cart", JSON.stringify(myCart));
+      toast.success("Item removed successfully!");
     } catch (error) {
       console.log(error);
     }
@@ -30,14 +30,14 @@ const CartPage = () => {
       cart?.map((item) => {
         total += item.price;
       });
-      return total.toLocaleString('en-IN', {
-        style : "currency",
-        currency : "INR"
-      })
+      return total.toLocaleString("en-IN", {
+        style: "currency",
+        currency: "INR",
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -81,12 +81,16 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4 text-center">
-            <h2>Cart Summary</h2>
-            <p>Total | Checkout | Payment</p>
-            <hr />
-            <h4>Total : {totalPrice()}</h4>
-          </div>
+          {cart?.length > 0 ? (
+            <div className="col-md-4 text-center">
+              <h2>Cart Summary</h2>
+              <p>Total | Checkout | Payment</p>
+              <hr />
+              <h4>Total : {totalPrice()}</h4>
+            </div>
+          ) : (
+            " "
+          )}
         </div>
       </div>
     </Layout>

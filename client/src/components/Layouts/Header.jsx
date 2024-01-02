@@ -126,13 +126,12 @@ const Header = () => {
                   </li>
                 </>
               )}
-                <Badge count={cart?.length} showZero>
               <li className="nav-item">
                   <NavLink to="/cart" className="nav-link">
-                    Cart
+                    Cart <span >{cart?.length < 1 ? `${cart?.length}` : '0' }</span>
                   </NavLink>
               </li>
-                </Badge>
+               
             </ul>
           </div>
         </div>
