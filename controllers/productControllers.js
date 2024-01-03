@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
+import mongoose, { Schema } from "mongoose";
 
 import fs from "fs";
 
@@ -103,20 +104,36 @@ export const getSingleProductController = async (req, res) => {
 
 export const productPhotoController = async (req, res) => {
   try {
-    const product = await productModel.findById(req.params.pid).select("photo");
-    if (product.photo.data) {
+    const productId = req.params.pid;
+
+    if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid product ID",
+      });
+    }
+
+    const product = await productModel.findById(productId).select("photo");
+    if (product && product.photo && product.photo.data) {
       res.set("Content-type", product.photo.contentType);
       return res.status(200).send(product.photo.data);
+    } else {
+      return res.status(404).send({
+        success: false,
+        message: "Product photo not found",
+      });
     }
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in getting the product photo",
-      error,
+      error: error.message,
     });
   }
 };
+
+
 
 // delete product controller
 
@@ -235,7 +252,7 @@ export const countProductController = async (req, res) => {
 
 export const productListController = async (req, res) => {
   try {
-    const perPage = 6;
+    const perPage = 8;
     const page = req.params.page ? req.params.page : 1;
     const products = await productModel
       .find({})
