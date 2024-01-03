@@ -28,3 +28,19 @@
     outline: none !important;
 }
 
+
+.cart-section {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    background-color: var(--heading);
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 2.8rem;
+    right: .2rem;
+}
+
+

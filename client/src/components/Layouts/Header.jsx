@@ -6,7 +6,7 @@ import "../../CSS/Navbar.css";
 import SearchInput from "../form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
-import { Badge } from "antd";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -128,7 +128,8 @@ const Header = () => {
               )}
               <li className="nav-item">
                   <NavLink to="/cart" className="nav-link">
-                    Cart <span >{cart?.length < 1 ? `${cart?.length}` : '0' }</span>
+                  <LocalMallOutlinedIcon /> <div className="cart-section">{cart.length === 0 ? '0' : cart?.length}</div>
+
                   </NavLink>
               </li>
                
