@@ -1,0 +1,168 @@
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.check {
+    margin-left: 4.2rem;
+}
+
+.filter {
+    margin-left: -2.8rem;
+}
+
+.btn-reset {
+    width: fit-content;
+    margin-left: 4.2rem;
+    background-color: var(--heading);
+    border: none;
+
+}
+
+/* Home.css */
+
+.container-fluid {
+    margin-top: 20px;
+  }
+  
+  .card {
+    width: 18rem;
+    margin: 10px;
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    margin-top: 5px;
+  }
+  
+  /* You can add more styles as needed */
+  .home-section {
+    display: flex;
+    margin: 3rem 0rem;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+
+
+.shoes-info {
+ padding: 50px;
+ display: flex;
+ flex-direction: column;
+ width: 50%;
+}
+
+.shoes-info h1 {
+  font-size: 3.5rem;
+}
+
+.shoes-info h5 {
+  margin-bottom: 2rem;
+  width: 90%;
+  color: #666;
+}
+
+.shoes-info button {
+  width: fit-content;
+  padding: 8px 15px 8px 15px;
+  display: flex;
+  gap: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--heading);
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.shoe-img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  animation: zoomIn 3s infinite alternate;
+}
+
+/* Animation for shoes info */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shoes-info {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  animation: slideIn 1.5s ease-in-out;
+}
+
+.shoes-strip-section {
+  width: 100%;
+ height: 200px;
+ display: flex;
+ justify-content: space-around;
+ background-color: var(--side-heading);
+ align-items: center;
+ color: #EEE;
+ margin-bottom: 2rem;
+}
+
+.shoes-strip-section section {
+      width: 22%;
+      height: 120px;
+      background-color: #30323f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 10px;
+}
+
+.shoes-strip-section section svg {
+  color: var(--heading);
+  width:  35px;
+  height: 35px; 
+  position: relative;
+  top: -1rem;
+}
+
+.main-tag {
+  font-size: 1.3rem;
+  color: #fff !important;
+}
+
+.shoes-strip-section span {
+  color: #666;
+}

@@ -39,8 +39,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 2.8rem;
-    right: .2rem;
+    top: 3rem !important;
+    right: .8rem;
+}
+
+.cart-link {
+    margin-right: 1rem;
 }
 
 

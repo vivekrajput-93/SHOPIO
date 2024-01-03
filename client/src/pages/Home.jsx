@@ -6,14 +6,17 @@ import { Price } from "../components/Price";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
-
+import "../CSS/Home.css";
+import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
+import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
+import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedInRounded";
+import LocalAtmRoundedIcon from "@mui/icons-material/LocalAtmRounded";
+import WifiProtectedSetupRoundedIcon from "@mui/icons-material/WifiProtectedSetupRounded";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [categories, setCategories] = useState([]);
-  const [checked, setChecked] = useState([]);
-  const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -35,6 +38,11 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
   //get products
   const getAllProducts = async () => {
     try {
@@ -75,73 +83,61 @@ const HomePage = () => {
     }
   };
 
-  // filter by cat
-  const handleFilter = (value, id) => {
-    let all = [...checked];
-    if (value) {
-      all.push(id);
-    } else {
-      all = all.filter((c) => c !== id);
-    }
-    setChecked(all);
-  };
-  useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
-  }, [checked.length, radio.length]);
-
-  useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
-  }, [checked, radio]);
-
-  //get filterd product
-  const filterProduct = async () => {
-    try {
-      const { data } = await axios.post("/api/v1/product/filter-product", {
-        checked,
-        radio,
-      });
-      setProducts(data?.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <Layout>
       <div className="container-fluid row mt-3">
-        <div className="col-md-2">
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column check">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-          </div>
-          {/* price filter */}
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Price?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column">
-            <button
-              className="btn btn-danger mt-3"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
+        <div className="home-section">
+          <img src="/assets/Main-Shoes.png" className="shoe-img" />
+          <div className="shoes-info">
+            <h2>Best Quality Shoes !</h2>
+            <h1>Fashion at Your Feet.</h1>
+            <h5>
+              Step into a world of timeless elegance and unparalleled comfort,
+              where every step embraces your unique sense of style.
+            </h5>
+            <button className="main-shoes-button">
+              {" "}
+              <LocalMallOutlined />
+              Shop Now
             </button>
           </div>
         </div>
+        <div className="shoes-strip-section">
+          <section>
+            <LocalShippingRoundedIcon />
+            <span>
+            <span className="main-tag">Free Shipping</span>
+              <br />
+              Above ₹500 only
+            </span>
+          </section>
+          <section>
+            <AssignmentTurnedInRoundedIcon />
+            <span>
+            <span className="main-tag">Certified Products</span>
+              <br />
+              100% Guarantee
+            </span>
+          </section>
+          <section>
+            <LocalAtmRoundedIcon />
+            <span>
+              <span className="main-tag">Huge Savings</span>
+              <br/>
+              At lower price
+            </span>
+          </section>
+          <section>
+            <WifiProtectedSetupRoundedIcon />
+            <span>
+            <span className="main-tag">Easy Returns</span>
+              <br />
+              No Question Asked
+            </span>
+          </section>
+        </div>
         <div className="col-md-9">
-          <h1 className="text-center">All Products</h1>
+          {/* <h1 className="text-center">All Products</h1> */}
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" style={{ width: "18rem" }}>
@@ -166,7 +162,10 @@ const HomePage = () => {
                     className="btn btn-secondary ms-1"
                     onClick={() => {
                       setCart([...cart, p]);
-                      localStorage.setItem('cart', JSON.stringify([...cart, p]))
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
                       toast.success("Item Added to cart");
                     }}
                   >
