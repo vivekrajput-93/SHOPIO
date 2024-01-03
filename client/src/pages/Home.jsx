@@ -136,41 +136,21 @@ const HomePage = () => {
             </span>
           </section>
         </div>
-        <div className="col-md-9">
-          {/* <h1 className="text-center">All Products</h1> */}
+        <div className="main-product-container">
+          <h1 className="text-center">Best Selling Shoes</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div className="card-product m-2" style={{ width: "18rem" }}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
+                  onClick={() => navigate(`/product/${p.slug}`)}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">
-                    {p.description.substring(0, 30)}...
-                  </p>
-                  <p className="card-text"> $ {p.price}</p>
-                  <button
-                    class="btn btn-primary ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
-                  >
-                    More Details
-                  </button>
-                  <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item Added to cart");
-                    }}
-                  >
-                    ADD TO CART
-                  </button>
+                  <p className="card-text"> $ {p.price}</p> 
+                  <p className="card-text"> {p.slug}</p>
                 </div>
               </div>
             ))}

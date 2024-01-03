@@ -38,6 +38,7 @@
   .card-title {
     font-size: 1.2rem;
     font-weight: bold;
+    text-align: center;
   }
   
   .card-text {
@@ -135,7 +136,6 @@
  justify-content: space-around;
  background-color: var(--side-heading);
  align-items: center;
- color: #EEE;
  margin-bottom: 2rem;
 }
 
@@ -160,7 +160,7 @@
 
 .main-tag {
   font-size: 1.3rem;
-  color: #fff !important;
+  color: #eee !important;
 }
 
 .shoes-strip-section span {
