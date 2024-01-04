@@ -3,7 +3,7 @@ import Layout from "./../components/Layouts/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Price } from "../components/Price";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,  } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
 import "../CSS/Home.css";
@@ -13,6 +13,8 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import LocalAtmRoundedIcon from "@mui/icons-material/LocalAtmRounded";
 import WifiProtectedSetupRoundedIcon from "@mui/icons-material/WifiProtectedSetupRounded";
 
+
+
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useCart();
@@ -21,6 +23,10 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  const categoriesLimit = 4;
+  
 
   //get all cat
   const getAllCategory = async () => {
@@ -83,6 +89,13 @@ const HomePage = () => {
     }
   };
 
+  const filteredProducts = products.reduce((acc, product) => {
+    if (!acc.some((item) => item.category === product.category) && acc.length < categoriesLimit) {
+      acc.push(product);
+    }
+    return acc;
+  }, []);
+
   return (
     <Layout>
       <div className="container-fluid row mt-3">
@@ -137,10 +150,10 @@ const HomePage = () => {
           </section>
         </div>
         <div className="main-product-container">
-          <h1 className="text-center">Best Selling Shoes</h1>
-          <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <div className="card-product m-2" style={{ width: "18rem" }}>
+          <h1 className="text-center best-tag">Best Selling Shoes</h1>
+          <div className="main-product-card">
+            {filteredProducts?.map((p) => (
+              <div key={p._id} className="card card-product m-2" style={{ width: "18rem" }}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -149,25 +162,14 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text"> $ {p.price}</p> 
-                  <p className="card-text"> {p.slug}</p>
+                  <p className="text-center"> {p.description.substring(0, 30)}...</p>
+                  <p className="card-text"> $ {p.price}.00</p> 
+                  
                 </div>
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loading ..." : "Loadmore"}
-              </button>
-            )}
-          </div>
+
         </div>
       </div>
     </Layout>
