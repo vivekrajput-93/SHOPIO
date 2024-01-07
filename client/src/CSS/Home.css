@@ -157,9 +157,7 @@
       border-radius: 5px;
 }
 
-.best-tag {
-  margin-bottom: 3rem;
-}
+
 
 .btn-load {
   background-color: var(--heading);
@@ -260,6 +258,10 @@
   transition: ease-in .3s all;
 }
 
+.price-tag {
+  color: var(--heading) !important;
+}
+
 .promo-img {
   width: 200px;
   height: 200px;
@@ -297,6 +299,24 @@
   top: 13%;
 }
 
+.main-trending-card {
+  display: flex !important;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
 
+.main-trending-container {
+  margin-top: 3rem;
+}
 
+.foot-img {
+  display: block;
+  margin: auto;
+  margin-bottom: 3rem;
+  width: 40px;
+  height: 40px;
+}
 

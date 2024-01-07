@@ -13,6 +13,9 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import LocalAtmRoundedIcon from "@mui/icons-material/LocalAtmRounded";
 import WifiProtectedSetupRoundedIcon from "@mui/icons-material/WifiProtectedSetupRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoePrints } from '@fortawesome/free-solid-svg-icons';
+
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -22,10 +25,11 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+ 
+    
 
-  const handleNavigation = () => {
-    navigate("/category/men"); // Navigates to the "/category/men" route
-  };
+
+
 
   const categoriesLimit = 4;
 
@@ -100,6 +104,15 @@ const HomePage = () => {
     return acc;
   }, []);
 
+
+  const trendingProducts = products.filter((product) => {
+    return !filteredProducts.some((filteredProduct) => {
+      return filteredProduct._id === product._id;
+    });
+  });
+  const limitedTrendingProducts = trendingProducts.slice(0, 4);
+
+
   return (
     <Layout>
       <div className="container-fluid row mt-3">
@@ -155,6 +168,7 @@ const HomePage = () => {
         </div>
         <div className="main-product-container">
           <h1 className="text-center best-tag">Best Selling Shoes</h1>
+          <FontAwesomeIcon icon={faShoePrints} className="foot-img" />
           <div className="main-product-card">
             {filteredProducts?.map((p) => (
               <div
@@ -174,7 +188,7 @@ const HomePage = () => {
                     {" "}
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text"> $ {p.price}.00</p>
+                  <p className="card-text price-tag"> $ {p.price}.00</p>
                 </div>
               </div>
             ))}
@@ -236,6 +250,34 @@ const HomePage = () => {
               Shop Now
             </button>
         </div>
+          <div className="main-trending-container">
+          <h1 className="text-center trend-tag">Trending Shoes</h1>
+          <FontAwesomeIcon icon="fa-solid fa-shoe-prints" />
+          <div className="main-trending-card">
+          {limitedTrendingProducts?.map((p) => (
+              <div
+                key={p._id}
+                className="card card-product m-2"
+                style={{ width: "18rem" }}
+              >
+                <img
+                  src={`/api/v1/product/product-photo/${p._id}`}
+                  className="card-img-top"
+                  alt={p.name}
+                  onClick={() => navigate(`/product/${p.slug}`)}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="text-center">
+                    {" "}
+                    {p.description.substring(0, 30)}...
+                  </p>
+                  <p className="card-text price-tag"> $ {p.price}.00</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          </div>
       </div>
     </Layout>
   );
