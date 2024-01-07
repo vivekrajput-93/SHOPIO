@@ -3,7 +3,7 @@ import Layout from "./../components/Layouts/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Price } from "../components/Price";
-import { useNavigate,  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
 import "../CSS/Home.css";
@@ -12,8 +12,7 @@ import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
 import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedInRounded";
 import LocalAtmRoundedIcon from "@mui/icons-material/LocalAtmRounded";
 import WifiProtectedSetupRoundedIcon from "@mui/icons-material/WifiProtectedSetupRounded";
-
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -24,9 +23,11 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const handleNavigation = () => {
+    navigate("/category/men"); // Navigates to the "/category/men" route
+  };
 
   const categoriesLimit = 4;
-  
 
   //get all cat
   const getAllCategory = async () => {
@@ -90,7 +91,10 @@ const HomePage = () => {
   };
 
   const filteredProducts = products.reduce((acc, product) => {
-    if (!acc.some((item) => item.category === product.category) && acc.length < categoriesLimit) {
+    if (
+      !acc.some((item) => item.category === product.category) &&
+      acc.length < categoriesLimit
+    ) {
       acc.push(product);
     }
     return acc;
@@ -119,7 +123,7 @@ const HomePage = () => {
           <section>
             <LocalShippingRoundedIcon />
             <span>
-            <span className="main-tag">Free Shipping</span>
+              <span className="main-tag">Free Shipping</span>
               <br />
               Above ₹500 only
             </span>
@@ -127,7 +131,7 @@ const HomePage = () => {
           <section>
             <AssignmentTurnedInRoundedIcon />
             <span>
-            <span className="main-tag">Certified Products</span>
+              <span className="main-tag">Certified Products</span>
               <br />
               100% Guarantee
             </span>
@@ -136,14 +140,14 @@ const HomePage = () => {
             <LocalAtmRoundedIcon />
             <span>
               <span className="main-tag">Huge Savings</span>
-              <br/>
+              <br />
               At lower price
             </span>
           </section>
           <section>
             <WifiProtectedSetupRoundedIcon />
             <span>
-            <span className="main-tag">Easy Returns</span>
+              <span className="main-tag">Easy Returns</span>
               <br />
               No Question Asked
             </span>
@@ -153,7 +157,11 @@ const HomePage = () => {
           <h1 className="text-center best-tag">Best Selling Shoes</h1>
           <div className="main-product-card">
             {filteredProducts?.map((p) => (
-              <div key={p._id} className="card card-product m-2" style={{ width: "18rem" }}>
+              <div
+                key={p._id}
+                className="card card-product m-2"
+                style={{ width: "18rem" }}
+              >
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -162,14 +170,71 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="text-center"> {p.description.substring(0, 30)}...</p>
-                  <p className="card-text"> $ {p.price}.00</p> 
-                  
+                  <p className="text-center">
+                    {" "}
+                    {p.description.substring(0, 30)}...
+                  </p>
+                  <p className="card-text"> $ {p.price}.00</p>
                 </div>
               </div>
             ))}
           </div>
-
+        </div>
+        <div className="main-promo-card">
+          <section className="promo-card">
+            <h2>Men Shoes</h2>
+            <p className="promo-sub-heading">
+              Classic style meets contemporary comfort for men.
+            </p>
+            <button
+              className="btn-promo"
+              onClick={() => navigate("/category/men")}
+            >
+              Shop Now <ArrowForwardIcon />{" "}
+            </button>
+            <br />
+            <img src="assets/men-14.png" alt="men-img" className="promo-img" />
+          </section>
+          <section className="promo-card">
+            <h2>Women Shoes</h2>
+            <p className="promo-sub-heading">
+              Empowering fashion embracing individuality versatile designs.
+            </p>
+            <button
+              className="btn-promo"
+              onClick={() => navigate("/category/women")}
+            >
+              Shop Now <ArrowForwardIcon />{" "}
+            </button>
+            <br />
+            <img
+              src="assets/women-13.png"
+              alt="men-img"
+              className="promo-img"
+            />
+          </section>
+          <section className="promo-card">
+            <h2>Kids Shoes</h2>
+            <p className="promo-sub-heading">
+              Playful, comfortable styles sparking imagination and embracing
+              adventure.
+            </p>
+            <button
+              className="btn-promo"
+              onClick={() => navigate("/category/kids")}
+            >
+              Shop Now <ArrowForwardIcon />
+            </button>
+            <br />
+            <img src="assets/kids-9.png" alt="men-img" className="promo-img" />
+          </section>
+        </div>
+        <div className="sales-strip">
+          <p className="sales-heading">Get 25% Off On Your First Purchase!</p>
+          <button className="main-shoes-button">
+              <LocalMallOutlined />
+              Shop Now
+            </button>
         </div>
       </div>
     </Layout>
