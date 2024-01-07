@@ -1,5 +1,5 @@
 import express from "express";
-import {forgotPasswordController,    getOrderController,    loginController, registerController, testController, updateProfileController} from "../controllers/authControllers.js"
+import {forgotPasswordController, getAllOrderController,getOrderController,loginController, orderStatusController, registerController, testController, updateProfileController} from "../controllers/authControllers.js"
 import { isAdmin, requiredSignIn } from "../middlewares/authMiddleware.js";
 
 // routing to authenticate
@@ -33,6 +33,10 @@ router.get("/admin-auth", requiredSignIn, isAdmin, (req, res) => {
 // update user profile
 router.put('/update' , requiredSignIn, updateProfileController)
 
-router.get("/orders", requiredSignIn, getOrderController)
+router.get("/orders", requiredSignIn, getOrderController);
+
+router.get("/all-orders", requiredSignIn, isAdmin, getAllOrderController);
+
+router.put("/order-status/:orderId", requiredSignIn, isAdmin, orderStatusController)
 
 export default router;
