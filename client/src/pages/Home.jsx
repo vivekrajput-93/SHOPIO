@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layouts/Layout";
 import axios from "axios";
-import { Checkbox, Radio } from "antd";
-import { Price } from "../components/Price";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/cart";
-import toast from "react-hot-toast";
 import "../CSS/Home.css";
 import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
 import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
@@ -13,23 +9,16 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import LocalAtmRoundedIcon from "@mui/icons-material/LocalAtmRounded";
 import WifiProtectedSetupRoundedIcon from "@mui/icons-material/WifiProtectedSetupRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoePrints } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoePrints } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useCart();
-  const [categories, setCategories] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
+  const [ setCategories] = useState([]);
+  const [ setTotal] = useState(0);
+  const [page] = useState(1);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
- 
-    
-
-
-
 
   const categoriesLimit = 4;
 
@@ -104,14 +93,12 @@ const HomePage = () => {
     return acc;
   }, []);
 
-
   const trendingProducts = products.filter((product) => {
     return !filteredProducts.some((filteredProduct) => {
       return filteredProduct._id === product._id;
     });
   });
   const limitedTrendingProducts = trendingProducts.slice(0, 4);
-
 
   return (
     <Layout>
@@ -224,7 +211,7 @@ const HomePage = () => {
             <img
               src="assets/women-13.png"
               alt="men-img"
-              className="promo-img"
+              className="promo-img "
             />
           </section>
           <section className="promo-card">
@@ -240,21 +227,25 @@ const HomePage = () => {
               Shop Now <ArrowForwardIcon />
             </button>
             <br />
-            <img src="assets/kids-9.png" alt="men-img" className="promo-img" />
+            <img
+              src="assets/kids-9.png"
+              alt="men-img"
+              className="promo-image "
+            />
           </section>
         </div>
         <div className="sales-strip">
           <p className="sales-heading">Get 25% Off On Your First Purchase!</p>
           <button className="main-shoes-button">
-              <LocalMallOutlined />
-              Shop Now
-            </button>
+            <LocalMallOutlined />
+            Shop Now
+          </button>
         </div>
-          <div className="main-trending-container">
+        <div className="main-trending-container">
           <h1 className="text-center trend-tag">Trending Shoes</h1>
           <FontAwesomeIcon icon="fa-solid fa-shoe-prints" />
           <div className="main-trending-card">
-          {limitedTrendingProducts?.map((p) => (
+            {limitedTrendingProducts?.map((p) => (
               <div
                 key={p._id}
                 className="card card-product m-2"
@@ -277,7 +268,85 @@ const HomePage = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="customer-section">
+          <h3 className="text-center best-tag">Customer Review!</h3>
+          <div className="customer-main-section">
+            <section className="customer-card">
+              <img
+                src="/assets/star.png"
+                alt="star-review"
+                className="star-review"
+              />
+              <p>
+                Mike here! I'm thrilled with my recent shoe purchase from
+                Shopio. The range is fantastic, and the quality exceeded my
+                expectations. The shoes are stylish, comfy, and perfect for my
+                active lifestyle.
+              </p>
+              <div className="customer">
+                <img
+                  src="/assets/customer-men.jpg"
+                  alt="mike"
+                  className="customer-img"
+                />
+                <span className="customer-name">Mike Ross</span>
+              </div>
+            </section>
+            <section className=" review-main">
+              <div className="background"></div>
+              <div className="customer-text">
+                <h4 className="deal text-center">
+                  Deal Of The Day 15% Off On All Shoes!
+                </h4>
+                <p className="sub-deal">
+                  Explore top-notch shoes for style and comfort. Visit us now!
+                </p>
+                <button className="btn-promo">
+                  Shop Now <ArrowForwardIcon />
+                </button>
+              </div>
+            </section>
+            <section className="customer-card">
+              <img
+                src="/assets/star.png"
+                alt="star-review"
+                className="star-review"
+              />
+              <p>
+                Hi, I'm Rachel! I absolutely adore the shoes I bought from
+                Shopio. The selection for women is impressive, and the pair I
+                got is both stylish and comfortable. The site's easy navigation
+                made finding the perfect shoes a breeze.
+              </p>
+              <div className="customer">
+                <img
+                  src="/assets/customer-women.jpg"
+                  alt="mike"
+                  className="customer-img"
+                />
+                <span className="customer-name">Rachel Green</span>
+              </div>
+            </section>
           </div>
+        </div>
+          <ul className="brands-list">
+            <li className="brand-logo">
+              <img src="/assets/brandsLogo/puma.png" alt="puma" className="logo-img" />
+            </li>
+            <li className="brand-logo">
+              <img src="/assets/brandsLogo/fila.png" alt="fila" className="logo-img" />
+            </li>{" "}
+            <li className="brand-logo">
+              <img src="/assets/brandsLogo/nike.png" alt="nike" className="logo-img nike" />
+            </li>{" "}
+            <li className="brand-logo">
+              <img src="/assets/brandsLogo/adidas.png" alt="adidas" className="logo-img" />
+            </li>{" "}
+            <li className="brand-logo">
+              <img src="/assets/brandsLogo/converse.png" alt="converse" className="logo-img" />
+            </li>
+          </ul>
       </div>
     </Layout>
   );
