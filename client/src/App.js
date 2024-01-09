@@ -24,6 +24,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrder from "./pages/Admin/AdminOrder";
+import Everything from "./pages/Everything";
 
 
 function App() {
@@ -58,6 +59,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/everything" element={<Everything />} />
+        
       </Routes>
       </Router>
     </>

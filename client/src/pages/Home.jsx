@@ -112,7 +112,7 @@ const HomePage = () => {
               Step into a world of timeless elegance and unparalleled comfort,
               where every step embraces your unique sense of style.
             </h5>
-            <button className="main-shoes-button">
+            <button onClick={() => navigate("/everything")} className="main-shoes-button">
               {" "}
               <LocalMallOutlined />
               Shop Now
@@ -302,7 +302,7 @@ const HomePage = () => {
                 <p className="sub-deal">
                   Explore top-notch shoes for style and comfort. Visit us now!
                 </p>
-                <button className="btn-promo">
+                <button onClick={() => navigate("/everything")} className="btn-promo">
                   Shop Now <ArrowForwardIcon />
                 </button>
               </div>

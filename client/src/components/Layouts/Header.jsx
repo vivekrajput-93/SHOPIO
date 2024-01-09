@@ -27,18 +27,8 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div className="left-link">
             <Link to="/" className="navbar-brand">
               <img
                 src="/assets/shopio-logos_transparent.png"
@@ -46,9 +36,20 @@ const Header = () => {
                 className="logo"
               />
             </Link>
+            <li className="nav-item">
+                <NavLink to="/everything" className="nav-link normal-link">
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/category/socks" className="nav-link normal-link">
+                  Socks
+                </NavLink>
+              </li>
+            </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
+                <NavLink to="/" className="nav-link home-link">
                   Home
                 </NavLink>
               </li>
