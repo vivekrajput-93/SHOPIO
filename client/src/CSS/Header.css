@@ -61,5 +61,25 @@
 
 .normal-link {
     position: relative;
-    top: 1.8rem;
+    top: 1rem !important;
+}
+
+.drip-link li:first-child {
+    font-size: 1rem;
+}
+
+.drip-link {
+    border-radius: 5px !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
+}
+
+.drip-link li {
+    text-align: center;
+    color: var(--side-heading);
+}
+
+.drip-link li :hover {
+    background-color: var(--heading);
+    color: #666;
 }

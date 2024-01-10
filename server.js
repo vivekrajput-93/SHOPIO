@@ -32,7 +32,7 @@ app.use("/api/v1/product", ProductsRoutes)
 
 // home api
 app.use('*', function(req,res) {
-    const indexPath = path.resolve(__dirname, '..', 'client', 'build', 'index.html');
+    const indexPath = path.resolve(__dirname,  'client', 'build', 'index.html');
 res.sendFile(indexPath);
 
 })

@@ -22,6 +22,7 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout successfully");
   };
+  
 
   return (
     <>
@@ -31,7 +32,7 @@ const Header = () => {
             <div className="left-link">
             <Link to="/" className="navbar-brand">
               <img
-                src="/assets/shopio-logos_transparent.png"
+                src="/assets/logo.png"
                 alt="logo"
                 className="logo"
               />

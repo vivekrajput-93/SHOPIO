@@ -5,7 +5,7 @@
 
 .main {
     width: 100%;
-    height: 190vh;
+    height: 200vh;
 }
 
 .contact-heading {
@@ -82,13 +82,13 @@
 
 .accord .text {
     text-align: center;
-    margin: 2rem;
+    margin: 1.5rem;
   
 }
 
 .accord-item-content {
     margin-top: .5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #27374D;
 }
 
@@ -101,7 +101,7 @@
 
 .accord-item-content {
     margin-top: .5rem;
-    font-size: 1rem;
+    font-size: .9rem;
     color: #27374D;
     border-top: none; /* If there's a border above the answer, remove it */
 }

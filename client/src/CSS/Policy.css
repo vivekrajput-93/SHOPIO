@@ -10,6 +10,10 @@
     gap: 100px;
 }
 
+.main-section {
+    margin-bottom: 3rem;
+}
+
 .card-left {
     flex: 1;
     margin-left: 4rem;

@@ -1,0 +1,50 @@
+.cart-empty {
+    width: 100%;
+}
+
+.cart-img {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    mix-blend-mode: multiply !important;
+    position: relative;
+    top: -4rem;
+}
+
+.cart-text-section {
+    position: relative;
+    top: -6rem;
+}
+
+.cart-text {
+    font-size: 2rem;
+    color: var(--side-heading);
+}
+
+.cart-text span {
+    color: var(--heading);
+}
+
+.cart-text-section p {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.cart-btn {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--heading);
+    color: #eee;
+}
+
+.cart-icon {
+    position: relative;
+    top: -.2rem;
+}
+
+.cart-btn:hover {
+    background-color: var(--side-heading);
+    transition: all .3s ease-in-out;
+}

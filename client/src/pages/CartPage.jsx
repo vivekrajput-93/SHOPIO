@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import "../CSS/Cart.css";
+import LocalMallOutlined from "@mui/icons-material/LocalMallOutlined";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -80,15 +82,22 @@ const CartPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
-              {`Hello ${auth?.token && auth?.user?.name}`}
-            </h1>
             <h4 className="text-center">
               {cart?.length
                 ? `You Have ${cart.length} items in your cart ${
                     auth?.token ? "" : "please login to checkout"
                   }`
-                : " Your Cart Is Empty"}
+                : (
+                  <div className="cart-epmty">
+                    <img src="/assets/cart.png" alt="cart-empty" className="cart-img" />
+                    <br />
+                    <div className="cart-text-section">
+                    <span className="cart-text">Your Cart is <span>Empty !</span></span>
+                    <p>Must add some items on the cart before you proceed to checkout.</p>
+                    <button className="cart-btn" onClick={() => navigate("/")}><LocalMallOutlined className="cart-icon" /> Return to Shop</button>
+                    </div>
+                  </div>
+                )}
             </h4>
           </div>
         </div>
