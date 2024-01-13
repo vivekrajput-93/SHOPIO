@@ -91,7 +91,7 @@ const CartPage = () => {
                   <div className="cart-epmty">
                     <img src="/assets/cart.png" alt="cart-empty" className="cart-img" />
                     <br />
-                    <div className="cart-text-section">
+                    <div className="cart-empty-section">
                     <span className="cart-text">Your Cart is <span>Empty !</span></span>
                     <p>Must add some items on the cart before you proceed to checkout.</p>
                     <button className="cart-btn" onClick={() => navigate("/")}><LocalMallOutlined className="cart-icon" /> Return to Shop</button>
@@ -126,6 +126,7 @@ const CartPage = () => {
                     onClick={() => removeCartItem(p._id)}
                   >
                     Remove
+
                   </button>
               </div>
             ))}

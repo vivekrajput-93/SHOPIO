@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Checkbox, Radio } from "antd";
-import { Price } from "../components/Price";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
+import "../CSS/Everything.css";
 
 
 
@@ -111,44 +110,12 @@ const Everything = () => {
   };
   return (
     <Layout>
-      <div className="container-fluid row mt-3">
-        <div className="col-md-2">
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-          </div>
-          {/* price filter */}
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Price?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column">
-            <button
-              className="btn btn-danger"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
-            </button>
-          </div>
-        </div>
-        <div className="col-md-9 offset-1">
+
+        <div className="col-md-9 container-all ">
           <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap all-product-container">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
+              <div className="card all-product-card m-2" style={{ width: "18rem" }} key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -161,13 +128,13 @@ const Everything = () => {
                   </p>
                   <p className="card-text"> $ {p.price}</p>
                   <button
-                    className="btn btn-primary ms-1"
+                    className="btn product-btn-more"
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
                     More Details
                   </button>
                   <button
-                    className="btn btn-secondary ms-1"
+                    className="btn product-btn-add"
                     onClick={() => {
                       setCart([...cart, p]);
                       localStorage.setItem(
@@ -197,7 +164,6 @@ const Everything = () => {
             )}
           </div>
         </div>
-      </div>
     </Layout>
   );
 };

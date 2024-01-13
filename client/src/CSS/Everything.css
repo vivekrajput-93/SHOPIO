@@ -1,0 +1,41 @@
+.container-all {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-product-container {
+    display: flex;
+    width: 95vw !important;
+    margin-left: 1.5rem;
+}
+
+.all-product-card {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.product-btn-more {
+    background-color: var(--heading);
+    color: #fff;
+    margin-right: .5rem;
+}
+
+.product-btn-more:hover {
+    background-color: var(--side-heading);
+    color: #fff;
+    transform: scale(.9);
+    transition: all .3s ease-in-out;
+}
+
+
+.product-btn-add {
+    background-color: var(--side-heading);
+    color: #fff;
+}
+
+.product-btn-add:hover {
+    background-color: var(--heading);
+    color: #fff;
+    transform: scale(.9);
+    transition: all .3s ease-in-out;
+}

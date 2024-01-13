@@ -32,7 +32,7 @@ const Header = () => {
             <div className="left-link">
             <Link to="/" className="navbar-brand">
               <img
-                src="/assets/logo.png"
+                src="/assets/logo.jpeg"
                 alt="logo"
                 className="logo"
               />
