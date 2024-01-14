@@ -112,7 +112,7 @@ const Everything = () => {
     <Layout>
 
         <div className="col-md-9 container-all ">
-          <h1 className="text-center">All Products</h1>
+          <h1 className="text-center all-product-tag">All Products</h1>
           <div className="d-flex flex-wrap all-product-container">
             {products?.map((p) => (
               <div className="card all-product-card m-2" style={{ width: "18rem" }} key={p._id}>
