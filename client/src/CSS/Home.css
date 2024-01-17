@@ -96,6 +96,13 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+.main-shoes-button:hover {
+  background-color: var(--side-heading);
+  color: #fff;
+  transition: .3s all ease-in-out ;
+  transform: scale(.9);
+}
+
 @keyframes zoomIn {
   0% {
     transform: scale(1);
@@ -114,6 +121,9 @@
   object-fit: contain;
   animation: zoomIn 3s infinite alternate;
 }
+
+
+
 
 /* Animation for shoes info */
 @keyframes slideIn {
@@ -172,6 +182,13 @@
   color: #eee;
   transition: ease-in .3s all;
 
+}
+
+.promo-card button:hover {
+  background-color: var(--side-heading);
+  color: #fff;
+  transition: .3s all ease-in-out;
+  transform:  scale(0.9);
 }
 
 .shoes-strip-section section svg {
@@ -259,6 +276,7 @@
   color: #eee;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: ease-in .3s all;
+  transform: scale(0.9);
 }
 
 .price-tag {
@@ -277,7 +295,7 @@
   width: 200px;
   height: 200px;
   position: relative;
-  top: -6rem;
+  top: -4rem;
   right: -6.5rem;
 }
 

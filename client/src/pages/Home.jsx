@@ -217,7 +217,7 @@ const HomePage = () => {
           <section className="promo-card">
             <h2>Kids Shoes</h2>
             <p className="promo-sub-heading">
-              Playful, comfortable styles sparking imagination and embracing
+              Playful, comfortable styles spark embracing
               adventure.
             </p>
             <button
