@@ -1,37 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import Layout from '../components/Layouts/Layout'
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Layout from "../components/Layouts/Layout";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+import "../CSS/Cart.css";
 
 const CategoryProduct = () => {
+  const [products, setProduct] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [cart, setCart] = useCart();
+  const params = useParams();
+  const navigate = useNavigate();
 
-    const [products, setProduct] = useState([]);
-    const [category, setCategory] = useState([]);
-    const params = useParams();
-    const navigate = useNavigate();
-
-    const getProductByCat = async() => {
-        try {
-            const {data} = await axios.get(`/api/v1/product/product-category/${params.slug}`);
-            setProduct(data?.products);
-            setCategory(data?.category)
-        } catch (error) {
-            console.log(error)
-        }
+  const getProductByCat = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/product-category/${params.slug}`
+      );
+      setProduct(data?.products);
+      setCategory(data?.category);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        if(params?.slug) getProductByCat()
-    }, [params?.slug])
+  useEffect(() => {
+    if (params?.slug) getProductByCat();
+  }, [params?.slug]);
 
   return (
-    <Layout>
-   <h4 className="text-center">{category?.name}</h4>
-   <h4 className="text-center">{products?.length} result found</h4>
-   <div className="row">
-   <div className="d-flex flex-wrap">
+    <div className="product-cat-container">
+      <Layout>
+        <h4 className="text-center">{category?.name}</h4>
+        <div className="row product-cat-container">
+          <div className="d-flex flex-wrap ">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div
+                className="card all-product-card m-2"
+                style={{ width: "18rem" }}
+                key={p._id}
+              >
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -43,15 +52,33 @@ const CategoryProduct = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="card-text"> $ {p.price}</p>
-                  <button class="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  <button
+                    className="btn product-btn-more"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
+                  </button>
+                  <button
+                    className="btn product-btn-add"
+                    onClick={() => {
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-   </div>
-    </Layout>
-  )
-}
+        </div>
+      </Layout>
+    </div>
+  );
+};
 
-export default CategoryProduct
+export default CategoryProduct;

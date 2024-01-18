@@ -15,12 +15,12 @@
 }
 
 .all-product-tag {
-    margin-top: 3rem;
+   margin-top: 3rem;
     margin-bottom: 2rem;
     position: relative;
     left: 150px;
     color: var(--heading);
-    text-transform: uppercase;
+    text-transform: uppercase; 
 }
 
 .product-btn-more {
@@ -48,3 +48,4 @@
     transform: scale(.9);
     transition: all .3s ease-in-out;
 }
+

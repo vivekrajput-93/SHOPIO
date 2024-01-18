@@ -82,3 +82,34 @@
     color: #666;
     font-weight:  200 !important;
 }
+
+.btn-product-cat {
+    background-color: var(--heading);
+    color: #fff;
+    width: 120px;
+    margin-right: 1rem;
+}
+
+.product-cat-container {
+    overflow-x: hidden;
+}
+
+.cat-card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none !important;
+    cursor: pointer;
+    width: 290px !important;
+    height: 70vh;
+}
+
+.btn-product-more {
+    background-color: var(--side-heading);
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.btn-div {
+    display: flex;
+    position: relative;
+    top: -1rem;
+}
